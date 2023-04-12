@@ -1,0 +1,23 @@
+以下是一个使用Python语言实现聚类算法模型（K-Means）的示例：
+
+```python
+# 导入需要的库
+from sklearn.cluster import KMeans
+from sklearn.datasets import load_iris
+
+# 加载鸢尾花数据集
+dataset = load_iris()
+
+# 初始化K-Means模型
+n_clusters = 3 # 设置聚类簇数为3
+model = KMeans(n_clusters=n_clusters)
+
+# 拟合模型
+model.fit(dataset.data)
+
+# 预测结果
+y_pred = model.predict(dataset.data)
+
+# 打印聚类结果
+print(f"聚类结果: {y_pred}")
+```
