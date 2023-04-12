@@ -1,0 +1,42 @@
+以下是一个使用Python语言创建隐马尔可夫模型(HMM)的示例：
+
+```python
+# 导入需要的库
+from hmmlearn import hmm
+import numpy as np
+
+# 定义状态空间中可能出现的状态
+states = ['Sunny', 'Cloudy', 'Rainy']
+
+# 初始化HMM模型
+model = hmm.MultinomialHMM(n_components=len(states))
+
+# 定义观测序列
+obs_seq = np.array([[0, 1, 2, 2, 1, 0, 2, 1, 0, 1]])
+
+# 定义初始概率分布
+model.startprob_ = np.array([0.5, 0.3, 0.2])
+
+# 定义转移矩阵
+model.transmat_ = np.array([
+    [0.7, 0.2, 0.1],
+    [0.3, 0.4, 0.3],
+    [0.2, 0.3, 0.5]
+])
+
+# 定义发射矩阵
+model.emissionprob_ = np.array([
+    [0.7, 0.2, 0.1],
+    [0.2, 0.5, 0.3],
+    [0.1, 0.3, 0.6]
+])
+
+# 进行模型学习
+model.fit(obs_seq)
+
+# 预测观测序列
+predicted_states = model.predict(obs_seq)[0]
+
+# 打印预测结果
+print([states[i] for i in predicted_states])
+```
