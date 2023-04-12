@@ -1,0 +1,28 @@
+以下是一个使用Python语言实现集成学习模型（随机森林）的示例：
+
+```python
+# 导入需要的库
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+# 加载鸢尾花数据集
+dataset = load_iris()
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(dataset.data, dataset.target, test_size=0.2, random_state=42)
+
+# 初始化随机森林模型
+n_estimators = 100 # 设置决策树的数量为100
+model = RandomForestClassifier(n_estimators=n_estimators)
+
+# 拟合模型
+model.fit(X_train, y_train)
+
+# 预测测试集
+y_pred = model.predict(X_test)
+
+# 打印分类准确率
+accuracy = model.score(X_test, y_test)
+print(f"使用{n_estimators}个决策树的随机森林模型的准确率为: {accuracy:.2f}")
+```
