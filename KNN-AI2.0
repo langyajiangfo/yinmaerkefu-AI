@@ -1,0 +1,28 @@
+以下是一个将K值设定为50的K近邻算法模型的示例：
+
+```python
+# 导入需要的库
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+# 加载鸢尾花数据集
+dataset = load_iris()
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(dataset.data, dataset.target, test_size=0.2, random_state=42)
+
+# 初始化KNN模型
+k = 50 # 设置K值为50
+model = KNeighborsClassifier(n_neighbors=k)
+
+# 拟合模型
+model.fit(X_train, y_train)
+
+# 预测测试集
+y_pred = model.predict(X_test)
+
+# 打印分类准确率
+accuracy = model.score(X_test, y_test)
+print(f"K={k}, 准确率为: {accuracy:.2f}")
+```
